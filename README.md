@@ -7,7 +7,7 @@ You are free to use the source for anything, as long as you don't harm others.
 
 Using this software is at own risk, i am not responsible for any damage caused by using this tool.
 
-[https://github.com/petterroea/SkypeAdRemover/raw/master/skypeAdRemover.exe](Download)
+[Download](https://github.com/petterroea/SkypeAdRemover/raw/master/skypeAdRemover.exe)
 
 Building it
 ===========
