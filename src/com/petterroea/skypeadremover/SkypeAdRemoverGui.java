@@ -1,12 +1,17 @@
 package com.petterroea.skypeadremover;
 
+import java.awt.Desktop;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.io.File;
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.prefs.Preferences;
 
 import javax.swing.JButton;
@@ -34,7 +39,7 @@ public class SkypeAdRemoverGui {
 		c.gridx = 0;
 		c.gridy = 0;
 		//Title
-		JLabel title = new JLabel("Skype ad remover");
+		JLabel title = new JLabel("Skype ad remover", SwingConstants.CENTER);
 		title.setFont(title.getFont().deriveFont(25.0f));
 		frame.add(title, c);
 		//Button
@@ -74,9 +79,36 @@ public class SkypeAdRemoverGui {
 		JLabel disclaimer = new JLabel("All use of this software is at own risk.", SwingConstants.CENTER);
 		frame.add(disclaimer, c);
 		
+		JLabel credits = new JLabel("Made by petterroea(click for github)", SwingConstants.CENTER);
+		credits.addMouseListener(new MouseAdapter()  
+		{  
+		    public void mouseClicked(MouseEvent e)  
+		    {  
+		    	try {
+					openWebpage(new URI("https://github.com/petterroea"));
+				} catch (URISyntaxException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+		    }  
+		}); 
+		c.anchor = GridBagConstraints.PAGE_END;
+		c.gridy=4;
+		frame.add(credits, c);
 		
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
+	}
+	
+	public static void openWebpage(URI uri) {
+	    Desktop desktop = Desktop.isDesktopSupported() ? Desktop.getDesktop() : null;
+	    if (desktop != null && desktop.isSupported(Desktop.Action.BROWSE)) {
+	        try {
+	            desktop.browse(uri);
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	        }
+	    }
 	}
 	
 	public static boolean isAdmin(){
